@@ -1,105 +1,63 @@
-const canvas = document.getElementById("gameCanvas");
-    const ctx = canvas.getContext("2d");
-    
-    const snakeSize = 20;
-    let snake = [{ x: 10, y: 10 }];
-    
-    let food = { x: 15, y: 15 };
-    
-    function inicio() {
-      mover();
-      Colision();
-      Comer();
-      Marco();
-      
-      setTimeout(inicio, 100); 
-    }
-    
-    window.addEventListener("keydown", function(event) {
-      const direction = event.key;
-      Direccion(direction);
+$(document).ready(function(){
+    var palabra = "";
+    var palabraOculta = "";
+    var intentos = 0;
+    const maxIntentos = 6; 
+    var letrasAdivinadas = [];
+    const listaPalabras = ['codigo', 'software', 'programacion', 'aplicaciones', 'javascript', 'proyecto', 'jquery'];
+
+    $("#boton1").click(function (e) {
+        var rand = Math.floor(Math.random() * listaPalabras.length);
+        palabra = listaPalabras[rand].toUpperCase();
+        palabraOculta = "_".repeat(palabra.length);
+        $("#h3").text(palabraOculta);
+        intentos = 0;
+        letrasAdivinadas = [];
+        $("#intentos").text(intentos);
+        console.log("funciona")
     });
-    
-    let dx = 1;
-    let dy = 0;
-    function Direccion(direction) {
-      switch (direction) {
-        case "ArrowUp":
-          dx = 0;
-          dy = -1;
-          break;
-        case "ArrowDown":
-          dx = 0;
-          dy = 1;
-          break;
-        case "ArrowLeft":
-          dx = -1;
-          dy = 0;
-          break;
-        case "ArrowRight":
-          dx = 1;
-          dy = 0;
-          break;
-      }
-    }
-    
-    function mover() {
-      const Cabeza = { x: snake[0].x + dx, y: snake[0].y + dy };
-      snake.unshift(Cabeza);
-      if (!ComerComida) {
-        snake.pop();
-      } else {
-        ComerComida = false;
-        GenerarComida();
-      }
-    }
-    
-    function Colision() {
-      if (
-        snake[0].x < 0 ||
-        snake[0].x >= canvas.width / snakeSize ||
-        snake[0].y < 0 ||
-        snake[0].y >= canvas.height / snakeSize
-      ) {
-        alert("Perdiste");
-        document.location.reload();
-      }
-      
-      for (let i = 1; i < snake.length; i++) {
-        if (snake[i].x === snake[0].x && snake[i].y === snake[0].y) {
-          alert("Perdiste");
-          document.location.reload();
+
+    $("#boton").click(function (e) {
+        var letra = $("#letra").val().toUpperCase();
+
+        if (!/^[A-Z]$/.test(letra)) {
+            alert("Ingresa una sola letra válida.");
+            return;
         }
-      }
-    }
-    
-    let ComerComida = false;
-    function GenerarComida() {
-      const maxX = canvas.width / snakeSize;
-      const maxY = canvas.height / snakeSize;
-      food = {
-        x: Math.floor(Math.random() * maxX),
-        y: Math.floor(Math.random() * maxY)
-      };
-    }
-    
-    function Comer() {
-      if (snake[0].x === food.x && snake[0].y === food.y) {
-        ComerComida = true;
-      }
-    }
-    
-    function Marco() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      snake.forEach(segment => {
-        ctx.fillStyle = "green";
-        ctx.fillRect(segment.x * snakeSize, segment.y * snakeSize, snakeSize, snakeSize);
-      });
-      
-      ctx.fillStyle = "red";
-      ctx.fillRect(food.x * snakeSize, food.y * snakeSize, snakeSize, snakeSize);
-    }
-    
-    GenerarComida();
-    inicio();
+
+        if (letrasAdivinadas.includes(letra)) {
+            alert("Ya adivinaste esa letra.");
+            return;
+        }
+
+        letrasAdivinadas.push(letra);
+
+        if (palabra.includes(letra)) {
+            for (var i = 0; i < palabra.length; i++) {
+                if (palabra[i] === letra) {
+                    palabraOculta = palabraOculta.substring(0, i) + letra + palabraOculta.substring(i + 1);
+                }
+            }
+        } else {
+            intentos++;
+            $("#intentos").text(intentos);
+        }
+
+        if(intentos==0){
+            $("#img").attr('src', 'imagenes/ahorcado.png')
+        }else{
+            $("#img").attr('src', 'imagenes/ahorcado' + intentos + ".png")
+        }
+        $("#h3").text(palabraOculta);
+
+        if (intentos >= maxIntentos){
+            alert("¡Perdiste! La palabra era: " + palabra);
+            window.location.href = 'juegoproyecto.html';
+        } else if (palabraOculta === palabra) {
+            alert("¡Felicidades has ganado!")
+            window.location.href = 'juegoproyecto.html';
+        }
+        
+        $("#letra").val("");
+    });
+});
