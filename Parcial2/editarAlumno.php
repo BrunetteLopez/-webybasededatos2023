@@ -8,14 +8,22 @@
     <script src="jquery-3.7.1.js"></script>
 </head>
 <body>
-    <?php include 'menu.php'; ?>
+    <?php 
+
+    include 'menu.php';
+    $id = $_GET["id"];
+    $sql = "SELECT * FROM alumnos id=".$id;
+
+    $datos = $conexionn->query($sql);
+    $alumno = $datos->fetch_assoc()[0];
+    ?>
     <div class="container">
         <div class="row">
             <div class="col-12 card m-4 p-4">
             <form action="GuardaResgistro.php" method="POST">
                 <div class="form-group">
                     <label for="">Nombre:</label>
-                    <input name="nombre" type="text" class="form-control" placeholder="teclea el nombre del alumno">
+                    <input value name="nombre" type="text" class="form-control" placeholder="teclea el nombre del alumno">
 
                 </div>
                 <div class="form-group">
