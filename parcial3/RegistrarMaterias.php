@@ -4,40 +4,45 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar Alumno</title>
+    <title>Registrar materia</title>
     <link rel="stylesheet" href="css/bootstrap.css"> 
     <script src="code.jquery.com_jquery-3.7.1.js"></script>
 </head>
 <body>
     <?php include 'menu.php'; ?>
+
     <div class="container">
         <div class="row">
-            <div class="col-12 card m-4 p-4">
-            <form action="">
+            <div class="col-12 card p-4">
+                <form action="">
                     <div class="form-group">
-                        <label for="">Nombre:</label>
-                        <input name="nombre" type="text" class="form-control"  name= "nombre" placeholder="Teclea la materia" required>
-                    </div>
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" class="form-control" name="nombre" placeholder="Teclea la materia">
+                    </div><br>
                     <div class="form-group">
-                        <label for="">Semestre:</label>
-                        <input name="nombre" type="text" class="form-control" name="semestre" placeholder="Teclea el semestre" required>
-                    </div>
+                        <label for="semestre">Semestre:</label>
+                        <input type="number" class="form-control" name="semestre" placeholder="Teclea el semestre">
+                    </div><br>
                     <div class="form-group">
-                        <select name="ESPECIALIDAD" class="form-control">
+                    <label for="semestre">Especialidad:</label>
+                        <select name="especialidad" class="form-control">
                             <option value="">Seleccione una especialidad</option>
-                            <option value="PROGRAMACION">PROGRAMACION</option>
-                            <option value="OFIMATICA">OFIMATICA</option>
-                            <option value="ELECTRONICA">ELECTRONICA</option>
+                            <option value="PROGRAMACION">PROGRAMACIÓN</option>
                             <option value="CONTABILIDAD">CONTABILIDAD</option>
-                            <option value="CONSTRUCCION">CONSTRUCCION</option>
+                            <option value="OFIMATICA">OFIMÁTICA</option>
+                            <option value="CONSTRUCCION">CONSTRUCCIÓN</option>
+                            <option value="ELECTRÓNICA">ELECTRÓNICA</option>
+                        </select><br>
+                    </div>
+                    <div>
+                        <input type="submit" class="btn btn-primary" value="Registrar">
+                        <a href="ConsultarMaterias.php" class="btn btn-danger">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
-                        </select>
-</div>
-</form>
-</div>
-</div>
-</div>
+<script src="js/bootstrap.js"></script>
 </body>
 </html>
-
-
