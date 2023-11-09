@@ -22,6 +22,18 @@
           </ul>
         </li>
       </ul>
+      <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Materias
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="inicio.php">Inicio</a></li>
+            <li><a class="dropdown-item" href="consultarMaterias.php">Consultar Materias</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="RegistrarMaterias.php">Registrar Materias</a></li>
+          </ul>
+        </li>
+      </ul>
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
         <button class="btn btn-outline-secondary" type="submit">Buscar</button>
@@ -29,3 +41,4 @@
     </div>
   </div>
 </nav>
+

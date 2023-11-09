@@ -12,8 +12,7 @@
     <?php 
         include 'menu.php'; 
         include 'conexion.php'; 
-        //Recuperamos los datos de la base de datos 
-        $sql = "SELECT * FROM materias";
+        $sql = "SELECT * FROM materiass";
         $datos = $conexion->query($sql);
 
     ?>    
@@ -29,8 +28,8 @@
                                 <th>ID</th>
                                 <th>Nombre</th>
                                 <th>Semestre</th>
-                                <th>Especialidad</th>
-                                <th>Opciones</th>
+                                <th>especialidad</th>
+                              <th>opciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -41,8 +40,8 @@
                                     <td><?php echo $registro["semestre"]; ?></td>
                                     <td><?php echo $registro["especialidad"]; ?></td>
                                     <td>
-                                        <a href="editarAlumno.php?id=<?php echo $registro["id"]; ?>"  class="btn btn-sm btn-primary">Editar</a>
-                                        <a href="eliminarAlumno.php?id=<?php echo $registro["id"]; ?>" class="btn btn-sm btn-danger">Eliminar</a>
+                                    <a href="editarMaterias.php?id=<?php echo $registro["id"]; ?>"  class="btn btn-sm btn-primary">Editar</a>
+                                        <a href="EliminarMateria.php?id=<?php echo $registro["id"]; ?>" class="btn btn-sm btn-danger">Eliminar</a>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -50,7 +49,7 @@
                     </table>
                 </div>
                 <?php } else { ?>
-                    <h2 class="m-4">No existe datos de alumnos en la base e datos</h2>
+                    <h2 class="m-4">No existe materias</h2>
                 <?php } ?>
             </div>
         </div>
